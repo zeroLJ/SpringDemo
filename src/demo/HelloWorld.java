@@ -1,11 +1,8 @@
 package demo;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
-
 public class HelloWorld {
    private String message;
-   @Autowired
+
    public void setMessage(String message){
       this.message  = message;
    }
