@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+  >
+
+   <bean id="helloWorld" class="demo.HelloWorld"
+   		init-method="init" destroy-method="destroy">
+      <property name="message" value="Hello World222!"/>
+   </bean>
+   
+	<bean class="demo.InitHelloWorld" />
+	
+	<!--SQL Server配置 使用jdbc，对应jar包：sqljdbc42.jar -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	   <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+	   <property name="url" value="jdbc:sqlserver://localhost:1433;databaseName=demo;"/>
+	   <property name="username" value="ljl"/>
+	   <property name="password" value="pp123456"/>
+	</bean>
+	
+	<!--SQL Server配置 使用jdbc，对应jar包：c3p0-0.9.5.2.jar、 mchange-commons-java-0.2.11.jar -->
+	<bean id="dataSource2" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<!-- 指定连接数据库的驱动 -->
+		<property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+		<!-- 指定连接数据库的URL -->
+		<property name="jdbcUrl" value="jdbc:sqlserver://localhost:1433;databaseName=demo;"/>
+		<!-- 指定连接数据库的用户名 -->
+		<property name="user" value="ljl"/>
+		<!-- 指定连接数据库的密码 -->
+		<property name="password" value="pp123456"/>
+		<!-- 指定连接数据库连接池的最大连接数 -->
+		<property name="maxPoolSize" value="200"/>
+		<!-- 指定连接数据库连接池的最小连接数 -->
+		<property name="minPoolSize" value="2"/>
+		<!-- 指定连接数据库连接池的初始连接数 -->
+		<property name="initialPoolSize" value="2"/>
+		<!-- 指定连接数据库连接池的连接的最大空闲时间 -->
+		<property name="maxIdleTime" value="200"/>
+	</bean>
+</beans>
